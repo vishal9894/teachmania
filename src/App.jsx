@@ -6,18 +6,22 @@ import Aboutas from "./pages/Aboutas";
 import Carrier from "./pages/Carrier";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact ";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomeLayou />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<Aboutas />} />
-        <Route path="career" element={<Carrier />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="contact" element={<Contact />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomeLayou />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<Aboutas />} />
+          <Route path="career" element={<Carrier />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 
