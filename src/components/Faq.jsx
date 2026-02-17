@@ -1,33 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { faqs } from "../data/BrandData";
 import { BiDownArrow, BiHelpCircle } from "react-icons/bi";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      easing: 'ease-in-out',
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <section className="relative max-w-7xl mx-auto px-4 py-20 overflow-hidden">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-      </div>
+     
 
-      {/* Header with Gradient */}
-      <div className="text-center mb-16">
-        <span className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-4">
+      {/* Header with Gradient - Animate from top */}
+      <div 
+        data-aos="fade-down"
+        data-aos-delay="100"
+        className="text-center mb-16"
+      >
+        <span 
+          data-aos="zoom-in"
+          data-aos-delay="200"
+          className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-4"
+        >
           🤔 Got Questions?
         </span>
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <h2 
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+        >
           Frequently Asked{" "}
           <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
             Questions
           </span>
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p 
+          data-aos="fade-up"
+          data-aos-delay="400"
+          className="text-gray-600 max-w-2xl mx-auto"
+        >
           Everything you need to know about our courses and learning platform.
           Can't find what you're looking for? Feel free to contact us.
         </p>
@@ -36,8 +60,16 @@ const Faq = () => {
       {/* Main Content */}
       <div className="grid md:grid-cols-2 gap-12 items-start">
         {/* Left Side - FAQ Illustration/Stats */}
-        <div className="sticky top-24 space-y-8">
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white shadow-2xl">
+        <div 
+          data-aos="fade-right"
+          data-aos-delay="200"
+          className="sticky top-24 space-y-8"
+        >
+          <div 
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white shadow-2xl"
+          >
             <BiHelpCircle className="text-5xl mb-4 opacity-80" />
             <h3 className="text-2xl font-bold mb-2">Still have questions?</h3>
             <p className="text-orange-100 mb-6">
@@ -53,11 +85,19 @@ const Faq = () => {
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div 
+              data-aos="fade-up"
+              data-aos-delay="400"
+              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+            >
               <div className="text-3xl font-bold text-gray-900 mb-1">98%</div>
               <div className="text-sm text-gray-600">Satisfaction Rate</div>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div 
+              data-aos="fade-up"
+              data-aos-delay="500"
+              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+            >
               <div className="text-3xl font-bold text-gray-900 mb-1">24/7</div>
               <div className="text-sm text-gray-600">Support Available</div>
             </div>
@@ -65,10 +105,16 @@ const Faq = () => {
         </div>
 
         {/* Right Side - FAQ Accordion */}
-        <div className="space-y-4">
+        <div 
+          data-aos="fade-left"
+          data-aos-delay="200"
+          className="space-y-4"
+        >
           {faqs.map((faq, index) => (
             <div
               key={index}
+              data-aos="fade-up"
+              data-aos-delay={300 + index * 100} // Staggered animation
               className={`group bg-white rounded-2xl border transition-all duration-300 ${
                 activeIndex === index
                   ? "shadow-xl border-orange-200 scale-[1.02]"
@@ -133,7 +179,13 @@ const Faq = () => {
           {/* Bottom CTA */}
         </div>
       </div>
-      <div className="text-center w-full  flex justify-center items-center pt-6">
+
+      {/* Bottom CTA with AOS */}
+      <div 
+        data-aos="fade-up"
+        data-aos-delay="600"
+        className="text-center w-full flex justify-center items-center pt-6"
+      >
         <p className="text-gray-500 text-sm">
           Can't find what you're looking for?{" "}
           <button className="text-orange-600 font-semibold hover:text-orange-700 hover:underline">

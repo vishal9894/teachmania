@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoIosStarHalf } from "react-icons/io";
 import image from "../assets/image.jpg";
@@ -8,14 +8,33 @@ import { BsArrowLeft, BsArrowUpRight } from "react-icons/bs";
 import software from "../assets/1720.jpg";
 import ReviewCard from "../components/ReviewCard";
 import Faq from "../components/Faq";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS CSS
 
 const Home = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: true, // Whether animation should happen only once
+      offset: 100, // Offset from original trigger point
+      easing: 'ease-in-out', // Easing function
+    });
+    
+    // Refresh AOS on component update
+    AOS.refresh();
+  }, []);
+
   return (
     <>
       <section className="max-w-7xl mx-auto thin-scroll px-4 py-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-          {/* Left Content */}
-          <div className="max-w-xl">
+          {/* Left Content - Animate from left */}
+          <div 
+            data-aos="fade-right"
+            data-aos-delay="200"
+            className="max-w-xl"
+          >
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
               Empowering You with Digital{" "}
               <span className="text-orange-500">Skills</span>
@@ -31,7 +50,11 @@ const Home = () => {
             </button>
 
             {/* Contributors & Rating */}
-            <div className="mt-10 flex items-center gap-6 flex-wrap">
+            <div 
+              data-aos="fade-up"
+              data-aos-delay="400"
+              className="mt-10 flex items-center gap-6 flex-wrap"
+            >
               {/* Avatars */}
               <div className="flex -space-x-3">
                 {[
@@ -69,9 +92,12 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Illustration */}
-          <div className="w-full md:w-1/2 h-96 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
-            {/* Fixed: Properly rendering the image */}
+          {/* Right Illustration - Animate from left */}
+          <div 
+            data-aos="fade-left"
+            data-aos-delay="200"
+            className="w-full md:w-1/2 h-96 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center shadow-lg overflow-hidden"
+          >
             <img
               src={image}
               alt="Teaching illustration"
@@ -80,25 +106,29 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="py-12">
-        {/* Title */}
+
+      {/* Brands Section - Animate fade up */}
+      <div 
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="py-12"
+      >
         <div className="flex items-center justify-center mb-8">
           <h2 className="text-2xl font-semibold text-gray-800">
             Trusted by 2000+ Brands
           </h2>
         </div>
 
-        {/* Brand Marquee */}
         <Marquee speed={50}>
           {BrandData.map((item) => (
             <div
               key={item.id}
-              className="mx-10 grayscale  transition duration-300 flex hover:grayscale-0  gap-4 items-center"
+              className="mx-10 grayscale transition duration-300 flex hover:grayscale-0 gap-4 items-center"
             >
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-16 object-contain  rounded-full"
+                className="h-16 object-contain rounded-full"
               />
               <h2 className="mt-2 text-lg text-gray-600 font-semibold">
                 {item.name}
@@ -109,8 +139,11 @@ const Home = () => {
       </div>
 
       <section className="py-16 px-4 max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mb-12">
+        {/* Heading - Animate fade down */}
+        <div 
+          data-aos="fade-down"
+          className="text-center mb-12"
+        >
           <h3 className="text-2xl md:text-3xl font-bold text-gray-800">
             Start Exploring : Find your Perfect{" "}
             <span className="text-orange-500">Category</span>
@@ -122,18 +155,20 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Category Cards */}
+        {/* Category Cards - Staggered animations */}
         <div className="grid md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition">
-            {/* Image */}
+          <div 
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition"
+          >
             <img
               src={software}
               alt="Custom Application"
               className="h-40 w-full object-cover group-hover:scale-110 transition duration-500"
             />
 
-            {/* Content */}
             <div className="p-6 relative">
               <span className="absolute -top-6 right-6 bg-orange-500 text-white p-3 rounded-full shadow-md">
                 <BsArrowUpRight />
@@ -150,7 +185,11 @@ const Home = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition">
+          <div 
+            data-aos="fade-up"
+            data-aos-delay="400"
+            className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition"
+          >
             <img
               src="https://images.unsplash.com/photo-1557838923-2985c318be48"
               alt="Marketing"
@@ -173,7 +212,11 @@ const Home = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition">
+          <div 
+            data-aos="fade-up"
+            data-aos-delay="600"
+            className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition"
+          >
             <img
               src="https://images.unsplash.com/photo-1455390582262-044cdead277a"
               alt="Content Writing"
@@ -197,24 +240,24 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="w-full py-8">
+      {/* Reviews Section - Animate zoom in */}
+      <div 
+        data-aos="zoom-in"
+        data-aos-delay="200"
+        className="w-full py-8"
+      >
         <Marquee
           speed={50}
-          
           gradient={true}
           gradientColor={[255, 255, 255]}
           gradientWidth={50}
         >
-          {/* Container for all review cards */}
           <div className="flex gap-6 px-4">
-            {/* Map through reviews and render each card */}
             {reviews.map((review, index) => (
               <div key={index} className="w-[350px] flex-shrink-0">
                 <ReviewCard {...review} />
               </div>
             ))}
-
-            {/* Duplicate reviews for seamless infinite scroll (optional) */}
             {reviews.map((review, index) => (
               <div
                 key={`duplicate-${index}`}
@@ -226,8 +269,14 @@ const Home = () => {
           </div>
         </Marquee>
       </div>
-      <div className="">
-        <Faq/>
+
+      {/* FAQ Section - Animate fade up */}
+      <div 
+        data-aos="fade-up"
+        data-aos-delay="200"
+        className=""
+      >
+        <Faq />
       </div>
     </>
   );
