@@ -191,7 +191,7 @@ const Home = () => {
             className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition"
           >
             <img
-              src="https://images.unsplash.com/photo-1557838923-2985c318be48"
+              src={software}
               alt="Marketing"
               className="h-40 w-full object-cover group-hover:scale-110 transition duration-500"
             />
@@ -218,7 +218,7 @@ const Home = () => {
             className="group relative overflow-hidden rounded-2xl bg-white/30 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-2xl transition"
           >
             <img
-              src="https://images.unsplash.com/photo-1455390582262-044cdead277a"
+              src={software}
               alt="Content Writing"
               className="h-40 w-full object-cover group-hover:scale-110 transition duration-500"
             />
@@ -239,6 +239,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      
 
       {/* Reviews Section - Animate zoom in */}
       <div 
